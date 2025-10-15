@@ -2,85 +2,14 @@ import { makeAutoObservable } from 'mobx';
 
 export default class DeviceStore {
   constructor () {
-    this._types = [
-      { id: 1, name: 'Холодильники' },
-      { id: 2, name: 'Смартфоны' },
-      { id: 3, name: 'Ноутбуки' },
-      { id: 4, name: 'Телевизоры' },
-    ];
-    this._brands = [
-      { id: 1, name: 'Samsung' },
-      { id: 2, name: 'Apple' },
-      { id: 3, name: 'Lenovo' },
-      { id: 4, name: 'Asus' },
-    ];
-    this._devices = [
-      {
-        id: 1,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 2,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 3,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 4,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 5,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 6,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 7,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 8,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-      {
-        id: 9,
-        name: 'Iphone 12 pro',
-        price: 25000,
-        rating: 5,
-        img: 'https://quke.ru/resize/600x600/UserFiles/Landing/products_new/Honor_400_Pro/142467_photos_0_68502bf029c8d.jpg',
-      },
-    ];
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
     this._selectedType = {};
     this._selectedBrand = {};
+    this._page = 1;
+    this._totalCount = 0;
+    this._limit = 3;
     makeAutoObservable(this);
   }
 
@@ -88,7 +17,7 @@ export default class DeviceStore {
     this._types = types;
   }
 
-  setBrand (brands) {
+  setBrands (brands) {
     this._brands = brands;
   }
 
@@ -102,6 +31,18 @@ export default class DeviceStore {
 
   setSelectedBrand (brand) {
     this._selectedBrand = brand;
+  }
+
+  setPages (page) {
+    this._page = page;
+  }
+
+  setTotalCount (totalCount) {
+    this._totalCount = totalCount;
+  }
+
+  setLimit (limit) {
+    this._limit = limit;
   }
 
   get types () {
@@ -122,5 +63,17 @@ export default class DeviceStore {
 
   get selectedBrand () {
     return this._selectedBrand;
+  }
+
+  get totalCount () {
+    return this._totalCount;
+  }
+
+  get page () {
+    return this._page;
+  }
+
+  get limit () {
+    return this._limit;
   }
 }

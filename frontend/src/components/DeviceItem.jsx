@@ -9,7 +9,7 @@ const DeviceItem = ({ device }) => {
   return (
     <Col className="mt-3" md={3} onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
       <Card style={{ width: 150, cursor: 'pointer' }} border={'light'}>
-        <Image style={{ width: 150, height: 150 }} src={device.img}/>
+        <Image style={{ width: 150, height: 150 }} src={import.meta.env.VITE_API_URL + device.img}/>
         <div className="text-black-50 mt-1 d-flex justify-content-between">
           <div>Samsung...</div>
           <div>
